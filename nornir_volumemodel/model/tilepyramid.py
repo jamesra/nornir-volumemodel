@@ -21,13 +21,13 @@ class TilePyramid(model.DirectoryResource):
     def AddLevel(self, val):
         assert(isinstance(val, model.Level))
         assert(val not in self._levels)
-        self._levels.append(val)
+        self._levels[val.Downsample] = val
 
     def __init__(self, **kwargs):
         '''
         Constructor
         '''
 
-        self._levels = []
+        self._levels = {}
 
         super().__init__(**kwargs)

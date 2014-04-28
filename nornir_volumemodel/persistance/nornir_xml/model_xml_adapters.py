@@ -7,7 +7,7 @@ be raised.
 import os
 from xml.etree import ElementTree
 
-import nornir_volumexml.model as model
+import nornir_volumemodel.model as model
 import datetime
 
 
@@ -159,9 +159,29 @@ def TilePyramidLoad(elem, childObjs):
 
 def LevelLoad(elem, childObjs):
 
-    obj = model.TilePyramid()
+    obj = model.Level()
 
     AddKnownAttributes(elem, obj, defaultAttributeTypeMapping)
+
+    return obj
+
+def ScaleLoad(elem, childObjs):
+
+    scaleAttribMapping = {'X' : float,
+                          'Y' : float,
+                          'Z' : float}
+
+
+    obj = model.Scale()
+
+    for child in elem:
+        if 'UnitsPerPixel' in child.attrib:
+            units_per_pixel = child.attrib['UnitsPerPixel']
+            units_of_measure = child.attrib['UnitsOfMeasure']
+
+            obj.SetAxis(child.tag, units_per_pixel, units_of_measure)
+
+    AddKnownAttributes(elem, obj, scaleAttribMapping)
 
     return obj
 

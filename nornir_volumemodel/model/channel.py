@@ -10,6 +10,7 @@ class Channel(model.DirectoryResource, model.Named):
     '''
     classdocs
     '''
+
     @property
     def Filters(self):
         return self._filters
@@ -21,7 +22,8 @@ class Channel(model.DirectoryResource, model.Named):
     def AddFilter(self, val):
         assert(isinstance(val, model.Filter))
         assert(val not in self._filters)
-        self._filters.append(val)
+        self._filters[val.Name] = val
+        # self._filters.append(val)
 
     @property
     def Transforms(self):
@@ -29,12 +31,12 @@ class Channel(model.DirectoryResource, model.Named):
 
     @Transforms.setter
     def Transforms(self, val):
-        self._transforms = val
+        self._transforms = val.values()
 
     def AddTransform(self, val):
         assert(isinstance(val, model.Transform))
         assert(val not in self._transforms)
-        self._transforms.append(val)
+        self._transforms[val.Name] = val
 
     @property
     def Scale(self):
@@ -49,8 +51,8 @@ class Channel(model.DirectoryResource, model.Named):
         Constructor
         '''
 
-        self._filters = []
-        self._transforms = []
+        self._filters = {}
+        self._transforms = {}
         self._scale = None
 
         super().__init__(**kwargs)

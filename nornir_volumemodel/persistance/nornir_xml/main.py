@@ -8,7 +8,7 @@ import os
 from xml.etree import ElementTree
 import nornir_shared.prettyoutput as prettyoutput
 
-import nornir_volumexml.persistance.nornir_xml.model_xml_adapters
+import nornir_volumemodel.persistance.nornir_xml.model_xml_adapters
 
 
 def __AddVolumeDataFilenameIfNeeded(fullpath):
@@ -54,10 +54,10 @@ def Save(XMLPath):
 def GetModelLoadFuncFromTag(tag):
 
     ExpectedFunction = tag + "Load"
-    if ExpectedFunction in nornir_volumexml.persistance.nornir_xml.model_xml_adapters.__dict__:
-        return getattr(nornir_volumexml.persistance.nornir_xml.model_xml_adapters, ExpectedFunction)
+    if ExpectedFunction in nornir_volumemodel.persistance.nornir_xml.model_xml_adapters.__dict__:
+        return getattr(nornir_volumemodel.persistance.nornir_xml.model_xml_adapters, ExpectedFunction)
 
-    return nornir_volumexml.persistance.nornir_xml.model_xml_adapters.DefaultElementLoader
+    return nornir_volumemodel.persistance.nornir_xml.model_xml_adapters.DefaultElementLoader
 
 
 def ModelFromXMLElement(Element, ElementPath):
