@@ -4,9 +4,10 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
 
-class Level(model.DirectoryResource):
+from . import DirectoryResource
+
+class Level(DirectoryResource):
     '''
     classdocs
     '''

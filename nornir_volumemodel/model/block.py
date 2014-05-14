@@ -4,9 +4,10 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import DirectoryResource, Named
+from . import section
 
-class Block(model.DirectoryResource, model.Named):
+class Block(DirectoryResource, Named):
     '''
     classdocs
     '''
@@ -15,7 +16,7 @@ class Block(model.DirectoryResource, model.Named):
         return self._sections
 
     def AddSection(self, val):
-        assert(isinstance(val, model.Section))
+        assert(isinstance(val, section.Section))
         assert(val not in self._sections)
         self._sections.append(val)
 

@@ -3,9 +3,10 @@ Created on Apr 11, 2014
 
 @author: u0490822
 '''
-import model
 
-class Image(model.FileResource):
+from . import FileResource
+
+class Image(FileResource):
     '''
     A file on disk
     '''

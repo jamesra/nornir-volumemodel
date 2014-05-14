@@ -4,9 +4,11 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import DirectoryResource, Named
+from . import filter, transform
 
-class Channel(model.DirectoryResource, model.Named):
+
+class Channel(DirectoryResource, Named):
     '''
     classdocs
     '''
@@ -20,7 +22,7 @@ class Channel(model.DirectoryResource, model.Named):
         self._filters = val
 
     def AddFilter(self, val):
-        assert(isinstance(val, model.Filter))
+        assert(isinstance(val, filter.Filter))
         assert(val not in self._filters)
         self._filters[val.Name] = val
         # self._filters.append(val)
@@ -34,7 +36,7 @@ class Channel(model.DirectoryResource, model.Named):
         self._transforms = val.values()
 
     def AddTransform(self, val):
-        assert(isinstance(val, model.Transform))
+        assert(isinstance(val, transform.Transform))
         assert(val not in self._transforms)
         self._transforms[val.Name] = val
 

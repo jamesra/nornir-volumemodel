@@ -4,9 +4,10 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import DirectoryResource, Numbered
+from . import channel
 
-class Section(model.DirectoryResource, model.Numbered):
+class Section(DirectoryResource, Numbered):
     '''
     classdocs
     '''
@@ -19,7 +20,7 @@ class Section(model.DirectoryResource, model.Numbered):
         self._channels = val
 
     def AddChannel(self, val):
-        assert(isinstance(val, model.Channel))
+        assert(isinstance(val, channel.Channel))
         assert(val not in self._channels)
         self._channels.append(val)
 

@@ -4,9 +4,9 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import FileResource, InputTransformPropertySet
 
-class Transform(model.FileResource, model.InputTransformPropertySet):
+class Transform(FileResource, InputTransformPropertySet):
     '''
     Represents a file on disk with hashable amount of data
     '''

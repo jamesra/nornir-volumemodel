@@ -71,7 +71,7 @@ def ModelFromXMLElement(Element, ElementPath):
 
     try:
         obj = load_function(Element, linked_child_obj_list)
-    except Exception as e:
+    except nornir_volumemodel.persistance.nornir_xml.model_xml_adapters.UnknownModelException as e:
         print(str(e))
         return None
 

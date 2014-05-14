@@ -4,9 +4,10 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import FileResource
 
-class Data(model.FileResource):
+
+class Data(FileResource):
     '''
     Represents a file on disk with hashable amount of data
     '''

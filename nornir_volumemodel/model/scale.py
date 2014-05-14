@@ -4,7 +4,8 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+
+from . import ModelBase
 
 
 class AxisScale():
@@ -22,7 +23,7 @@ class AxisScale():
         self._UnitsPerPixel = UnitsPerPixel
 
 
-class Scale(model.ModelBase):
+class Scale(ModelBase):
     '''
     classdocs
     '''

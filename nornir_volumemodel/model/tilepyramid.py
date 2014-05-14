@@ -4,9 +4,9 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import level, DirectoryResource
 
-class TilePyramid(model.DirectoryResource):
+class TilePyramid(DirectoryResource):
     '''
     classdocs
     '''
@@ -19,7 +19,7 @@ class TilePyramid(model.DirectoryResource):
         self._levels = val
 
     def AddLevel(self, val):
-        assert(isinstance(val, model.Level))
+        assert(isinstance(val, level.Level))
         assert(val not in self._levels)
         self._levels[val.Downsample] = val
 

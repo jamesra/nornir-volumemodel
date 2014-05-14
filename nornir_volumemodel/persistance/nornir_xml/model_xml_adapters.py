@@ -30,6 +30,13 @@ hexChecksumAttributeTypeMapping = {'Checksum' : bytes.fromhex}
 filesizeChecksumAttributeTypeMapping = {'Checksum' : int}
 
 
+class UnknownModelException(Exception):
+    '''Indicates the requested model object does not have a class to represent it'''
+
+    def __init__(self, elem):
+        self.elem = elem
+
+
 def LoadElement(path):
     return ElementTree.parse(path).getroot()
 
@@ -57,7 +64,7 @@ def DefaultElementLoader(elem, childObjs):
     '''The default loader for an element'''
     classObj = TryGetModelClass(elem.tag)
     if classObj is None:
-        raise Exception("Unknown model type: " + elem.tag)
+        raise UnknownModelException(elem)
 
     obj = classObj()
     AddKnownAttributes(elem, obj, defaultAttributeTypeMapping)

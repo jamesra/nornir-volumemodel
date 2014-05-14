@@ -4,9 +4,9 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import DirectoryResource, Named
 
-class Filter(model.DirectoryResource, model.Named):
+class Filter(DirectoryResource, Named):
     '''
     classdocs
     '''

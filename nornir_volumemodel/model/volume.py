@@ -4,9 +4,10 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-import model
+from . import DirectoryResource, Named
+from . import block
 
-class Volume(model.DirectoryResource, model.Named):
+class Volume(DirectoryResource, Named):
 
     '''
     classdocs
@@ -17,7 +18,7 @@ class Volume(model.DirectoryResource, model.Named):
         return self._blocks
 
     def AddBlock(self, val):
-        assert(isinstance(val, model.Block))
+        assert(isinstance(val, block.Block))
         assert(val not in self._blocks)
         self._blocks.append(val)
 
