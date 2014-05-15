@@ -11,8 +11,7 @@ import nornir_volumemodel.model as model
 import datetime
 
 
-defaultAttributeTypeMapping = {'Downsample' : float,
-                               'ImageFormatExt' : str,
+defaultAttributeTypeMapping = {'ImageFormatExt' : str,
                                'InputTransformChecksum' : bytes.fromhex,
                                'InputTransformType': str,
                                'LevelFormat' : str,
@@ -166,10 +165,12 @@ def TilePyramidLoad(elem, childObjs):
 
 def LevelLoad(elem, childObjs):
 
-    obj = model.Level()
+    Number = int(elem.attrib["Downsample"])
+    obj = model.Level(Number=Number)
 
     AddKnownAttributes(elem, obj, defaultAttributeTypeMapping)
 
+    # Translate Downsample to "Number" for level objects
     return obj
 
 def ScaleLoad(elem, childObjs):

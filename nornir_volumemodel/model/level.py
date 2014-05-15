@@ -12,18 +12,18 @@ class Level(DirectoryResource):
     classdocs
     '''
     @property
-    def Downsample(self):
-        return self._Downsample
+    def Number(self):
+        return self._Number
 
-    @Downsample.setter
-    def Downsample(self, val):
-        self._Downsample = val
+    @Number.setter
+    def Number(self, val):
+        self._Number = val
 
     def __init__(self, **kwargs):
         '''
         Constructor
         '''
 
-        self._Downsample = None
+        self._Number = kwargs.pop('Number', None)
 
         super().__init__(**kwargs)

@@ -140,3 +140,4 @@ class FileResource(ExternalResource):
         self._checksum = None
 
 
+

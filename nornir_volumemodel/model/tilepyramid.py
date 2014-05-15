@@ -4,24 +4,12 @@ Created on Apr 11, 2014
 @author: u0490822
 '''
 
-from . import level, DirectoryResource
+from . import level, DirectoryResource, pyramidinterface
 
-class TilePyramid(DirectoryResource):
+class TilePyramid(DirectoryResource, pyramidinterface.PyramidInterface):
     '''
     classdocs
     '''
-    @property
-    def Levels(self):
-        return self._levels
-
-    @Levels.setter
-    def Levels(self, val):
-        self._levels = val
-
-    def AddLevel(self, val):
-        assert(isinstance(val, level.Level))
-        assert(val not in self._levels)
-        self._levels[val.Downsample] = val
 
     def __init__(self, **kwargs):
         '''
