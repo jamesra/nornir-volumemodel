@@ -45,6 +45,37 @@ class ExternalResource(ModelBase):
             del self.__dict__['__fullpath']
 
     @property
+    def RelativePath(self):
+        '''Relative path from volume root'''
+        RelPathStr = self.__dict__.get('__relpath', None)
+
+        if self._Parent is None:
+            return ''
+
+        if RelPathStr is None:
+            RelPathStr = self.Path
+
+            if(not hasattr(self, '_Parent')):
+                raise Exception("FullPath could not be generated for resource")
+
+            IterElem = self.Parent
+
+            while not IterElem is None:
+                if hasattr(IterElem, 'RelativePath'):
+                    RelPathStr = os.path.join(IterElem.RelativePath, RelPathStr)
+                    IterElem = None
+                    break
+                elif hasattr(IterElem, '_Parent'):
+                    IterElem = IterElem._Parent
+                else:
+                    raise Exception("FullPath could not be generated for resource")
+
+            self.__dict__['__relpath'] = RelPathStr
+
+
+        return RelPathStr
+
+    @property
     def FullPath(self):
 
         FullPathStr = self.__dict__.get('__fullpath', None)
