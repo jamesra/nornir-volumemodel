@@ -89,7 +89,13 @@ def _IsLinkedElement(elem):
 
 def _LoadLinkedElement(elem, parent_full_path):
     SubContainerPath = os.path.join(parent_full_path, elem.attrib["Path"])
-    childelem = LoadXmlElementFromPath(SubContainerPath)
+
+    try:
+        childelem = LoadXmlElementFromPath(SubContainerPath)
+    except ValueError as e:
+        print("XML meta data was missing, skipped: " + SubContainerPath)
+        return None
+
     return ModelFromXMLElement(childelem, SubContainerPath)
 
 def ChildElementObjects(elem, parent_full_path):
