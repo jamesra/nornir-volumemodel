@@ -47,7 +47,10 @@ class Scale(ModelBase):
 
     @property
     def Z(self):
-        return self._axes['Z']
+        if 'Z' in self._axes:
+            return self._axes['Z']
+
+        return None
 
     @Z.setter
     def Z(self, val):
