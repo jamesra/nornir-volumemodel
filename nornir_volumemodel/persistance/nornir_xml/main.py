@@ -72,7 +72,7 @@ def ModelFromXMLElement(Element, ElementPath):
     try:
         obj = load_function(Element, linked_child_obj_list)
     except nornir_volumemodel.persistance.nornir_xml.model_xml_adapters.UnknownModelException as e:
-        print(str(e))
+        # print(str(e))
         return None
 
     if obj is None:
@@ -102,7 +102,7 @@ def ChildElementObjects(elem, parent_full_path):
             childObj = ModelFromXMLElement(child, parent_full_path)
 
         if childObj is None:
-            print("Unable to load object for: " + str(ElementTree.tostring(elem)))
+            # print("Unable to load object for: " + str(ElementTree.tostring(elem)))
             continue
 
         yield childObj
