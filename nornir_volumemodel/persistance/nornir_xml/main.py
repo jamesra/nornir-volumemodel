@@ -10,6 +10,8 @@ import nornir_shared.prettyoutput as prettyoutput
 
 import nornir_volumemodel.persistance.nornir_xml.model_xml_adapters
 
+import nornir_volumemodel.model.section
+
 
 def __AddVolumeDataFilenameIfNeeded(fullpath):
     [base, ext] = os.path.splitext(fullpath)
@@ -110,5 +112,8 @@ def ChildElementObjects(elem, parent_full_path):
         if childObj is None:
             # print("Unable to load object for: " + str(ElementTree.tostring(elem)))
             continue
+
+        if isinstance(childObj, nornir_volumemodel.model.section.Section):
+            print("Loaded section %d" % childObj.Number)
 
         yield childObj
