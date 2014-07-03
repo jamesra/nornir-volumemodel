@@ -5,7 +5,7 @@ Created on Apr 11, 2014
 '''
 
 import os
-from xml.etree import ElementTree
+import xml.etree.cElementTree as ElementTree
 import nornir_shared.prettyoutput as prettyoutput
 
 import nornir_volumemodel.persistance.nornir_xml.model_xml_adapters
