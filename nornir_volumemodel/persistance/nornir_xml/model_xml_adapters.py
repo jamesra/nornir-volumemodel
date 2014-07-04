@@ -5,7 +5,7 @@ All loaders should return an object.  If an object cannot be returned an excepti
 be raised.
 '''
 import os
-from xml.etree import ElementTree
+import xml.etree.cElementTree as ElementTree
 
 import nornir_volumemodel.model as model
 import datetime
