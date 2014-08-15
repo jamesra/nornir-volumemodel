@@ -17,6 +17,14 @@ class Filter(DirectoryResource, Named):
     @TilePyramid.setter
     def TilePyramid(self, val):
         self._tilepyramid = val
+        
+    @property
+    def ImageSet(self):
+        return self._imageset
+    
+    @ImageSet.setter
+    def ImageSet(self, value):
+        self._imageset = value
 
     @property
     def HistogramData(self):
@@ -42,5 +50,6 @@ class Filter(DirectoryResource, Named):
         self._tilepyramid = None
         self._prune = None
         self._histogram = None
+        self._imageset = None
 
         super().__init__(**kwargs)

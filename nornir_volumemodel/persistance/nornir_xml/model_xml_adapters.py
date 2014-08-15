@@ -14,6 +14,7 @@ import datetime
 defaultAttributeTypeMapping = {'ImageFormatExt' : str,
                                'InputTransformChecksum' : bytes.fromhex,
                                'InputTransformType': str,
+                               'InputTransform': str,
                                'LevelFormat' : str,
                                'Name' : str,
                                'Number' : int,
@@ -139,6 +140,9 @@ def FilterLoad(elem, childObjs):
 
         if isinstance(child, model.Transform):
             obj.AddTransform(child)
+            
+        if isinstance(child, model.ImageSet):
+            obj.ImageSet = child
 
     return obj
 
@@ -163,12 +167,28 @@ def TilePyramidLoad(elem, childObjs):
 
     return obj
 
+def ImageSetLoad(elem, childObjs):
+    
+    obj = model.ImageSet()
+    
+    AddKnownAttributes(elem, obj, defaultAttributeTypeMapping)
+    
+    for child in childObjs:
+        if isinstance(child, model.Level):
+            obj.AddLevel(child)
+
+    return obj
+
 def LevelLoad(elem, childObjs):
 
     Number = int(elem.attrib["Downsample"])
     obj = model.Level(Number=Number)
 
     AddKnownAttributes(elem, obj, defaultAttributeTypeMapping)
+    
+    for child in childObjs:
+        if isinstance(child, model.Image):
+            obj.Image = child
 
     # Translate Downsample to "Number" for level objects
     return obj

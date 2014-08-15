@@ -18,6 +18,14 @@ class Level(DirectoryResource):
     @Number.setter
     def Number(self, val):
         self._Number = val
+    
+    @property
+    def Image(self):
+        return self._image
+    
+    @Image.setter
+    def Image(self, value):
+        self._image = value
 
     def __init__(self, **kwargs):
         '''
@@ -25,5 +33,6 @@ class Level(DirectoryResource):
         '''
 
         self._Number = kwargs.pop('Number', None)
+        self._image = None
 
         super().__init__(**kwargs)

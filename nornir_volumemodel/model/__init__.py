@@ -12,3 +12,4 @@ from nornir_volumemodel.model.image import Image
 from nornir_volumemodel.model.tilepyramid import TilePyramid
 from nornir_volumemodel.model.level import Level
 from nornir_volumemodel.model.scale import Scale
+from nornir_volumemodel.model.imageset import ImageSet
