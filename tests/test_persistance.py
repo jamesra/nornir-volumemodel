@@ -3,16 +3,25 @@ Created on Apr 11, 2014
 
 @author: u0490822
 '''
-import unittest
-import test.test_base
+import importlib.util
 import os
+import unittest
+from pathlib import Path
 
 import nornir_volumexml
 import nornir_volumexml.model as nmodel
 
+_spec = importlib.util.spec_from_file_location(
+    "nornir_volumemodel_test_base",
+    Path(__file__).resolve().parent / "test_base.py",
+)
+assert _spec is not None and _spec.loader is not None
+_test_base = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_test_base)
+PlatformTest = _test_base.PlatformTest
 
 
-class Test(test.test_base.PlatformTest):
+class Test(PlatformTest):
 
     @property
     def VolumePath(self):
